@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% if user.is_authenticated %}
+{% block content %}
+<div class="user-dashboard">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h2>Welcome, {{ user.username }}!</h2>
+                <hr>
+                <ul>
+                    <a href="{% url 'dashboard' %}">
+                        <li><i class="fa fa-home"></i> Home</li>
+                    </a>
+                    <a href="">
+                        <li><i class="fa fa-plus"></i> Add Book</li>
+                    </a>
+                    <a href="{% url 'users' %}">
+                        <li><i class="fa fa-user"></i> Users</li>
+                    </a>
+                    <a href="{% url 'logout' %}" class="sign-out"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign
+                        Out</a>
+                </ul>
+                <hr>
+                {% if book %}
+                <table class="highlight">
+                    <thead>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Author</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        {% for b in book %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ b.name }}</td>
+                            <td>{{ b.description }}</td>
+                            <td>{{ b.author }}</td>
+                            <td>
+                                <a href="">Update</a> /
+                                <a href="{% url 'book_delete' b.id %}">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p style="color:white;"> <i> No Books to display. Try adding new.</i></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% endif %}

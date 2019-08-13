@@ -1,0 +1,28 @@
+{% include 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="login-app">
+        <div class="container">
+            <div class="row">
+                <div class="col s3">
+
+                </div>
+                <div class="col s6">
+                    <h2>Log In</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="input-field">
+                            <input class="validate" type="text" name="username" id="id_username" placeholder="Username" required="" autofocus="">
+                            <input class="validate" type="password" name="password" id="id_password" placeholder="Password" required="" autofocus="">
+                            <input type="submit" value="Log In" class="waves-effect waves-light btn" style="margin: 10px 0;"><br>
+                            <a href="{% url 'register' %}" class="waves-effect waves-light btn red">Register</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="col s3">
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

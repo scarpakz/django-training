@@ -1,0 +1,59 @@
+body{
+    background-color: rgb(58, 16, 16);
+}
+.login-app .row .col.s6{
+    background-color: #09000152;
+    box-shadow: 5px 5px 10px black;
+}
+.login-app .row .col.s6 input{
+    color: white;
+}
+.login-app .row .col.s6 form{
+    padding: 30px;
+}
+.login-app .row .col.s6 h2{
+    text-align: center;
+    color:rgb(245, 245, 245);
+}
+.login-app .row .col.s6 {
+    margin: 20% 0;
+}
+
+/* USER DASHBOARD */
+.user-dashboard .row .col.s12 input{
+    color: white;
+}
+.user-dashboard .row .col.s12 h2{
+    color:rgb(245, 245, 245);
+}
+.user-dashboard .row .col.s12 table{
+    background-color: #4d1818;
+}
+.user-dashboard .row .col.s12 thead{
+    color:#bd7b7b;
+}
+.user-dashboard .row .col.s12 td{
+    color: #a1b3a8;
+}
+.user-dashboard .row .col.s12 tr:hover{
+    background-color: rgba(149, 65, 65, 0.5);
+}
+.user-dashboard .row .col.s12 .sign-out{
+    color: #d5c2c2;
+    padding:10px 5px;
+    transition: .2s;
+}
+.user-dashboard .row .col.s12 .sign-out:hover{
+    background-color: rgb(182, 79, 79);
+    padding:5px;
+    transition: .2s;
+    border-radius: 5px;
+}
+.user-dashboard .row .col.s12 ul li{
+    display:inline;
+    padding: 10px 20px;
+    color: #f0b74d;
+}
+.user-dashboard .row .col.s12 ul a li:hover{
+    background-color: #4f1212;
+}

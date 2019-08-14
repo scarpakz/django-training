@@ -13,7 +13,7 @@
                     <a href="{% url 'dashboard' %}">
                         <li><i class="fa fa-home"></i> Home</li>
                     </a>
-                    <a href="">
+                    <a href="{% url 'add_book' %}">
                         <li><i class="fa fa-plus"></i> Add Book</li>
                     </a>
                     <a href="{% url 'users' %}">
@@ -40,7 +40,7 @@
                             <td>{{ b.description }}</td>
                             <td>{{ b.author }}</td>
                             <td>
-                                <a href="">Update</a> /
+                                <a href="{% url 'update_book' b.id %}">Update</a> /
                                 <a href="{% url 'book_delete' b.id %}">Delete</a>
                             </td>
                         </tr>

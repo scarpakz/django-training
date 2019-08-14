@@ -57,3 +57,9 @@ body{
 .user-dashboard .row .col.s12 ul a li:hover{
     background-color: #4f1212;
 }
+
+/* BOOK ADD */
+.user-dashboard .row .col .book-form{
+    background-color:#0000003b;
+    padding: 15px;
+}

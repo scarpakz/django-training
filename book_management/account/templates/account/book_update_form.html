@@ -1,0 +1,29 @@
+{% include 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="user-dashboard">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h2>Update Book</h2>
+                <hr>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" placeholder="Name" value="{{ object.name }}" class="validate" name="name" id="id_name" required="" autofocus="">
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" placeholder="Author" value="{{ object.author }}" class="validate" name="author" id="id_author" required="">
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" placeholder="Description" value="{{ object.description }}" class="validate" name="description" id="id_description" required="">
+                        </div>
+                    </div>
+                    <input type="submit" value="Update Now" class="btn green">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

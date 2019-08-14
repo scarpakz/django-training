@@ -9,7 +9,7 @@ from django.contrib.auth import views
 from django.urls import reverse_lazy
 from .models import Book
 
-from .forms import BookForm
+from .forms import BookForm, SignUpForm
 
 class UserListView(ListView):
     model = User
@@ -22,10 +22,9 @@ class UserLoginView(views.LoginView):
         return url or resolve_url(settings.LOGIN_REDIRECT_URL)
 
 class UserCreateView(CreateView):
-    model = User
     template_name = 'account/register.html'
-    fields = ['username', 'password', 'first_name', 'last_name']
-    success_url = reverse_lazy('dashboard')
+    form_class = SignUpForm
+    success_url = reverse_lazy('login')
 
 @method_decorator(login_required, name='dispatch')
 class UserDashboardCreateView(CreateView, ListView):
@@ -52,14 +51,13 @@ class DeleteBookView(DeleteView):
 
 @method_decorator(login_required, name='dispatch')
 class BookCreateView(CreateView):
-    model = Book
     template_name = 'account/add_book.html'
-    fields = ['name','description','author']
+    form_class = BookForm
     success_url = reverse_lazy('dashboard')
 
 @method_decorator(login_required, name='dispatch')
 class BookUpdateView(UpdateView):
-    model = Book
-    fields = ['name', 'author', 'description']
+    form_class = BookForm
+    queryset = Book.objects.all()
     template_name_suffix = "_update_form"
     success_url = reverse_lazy('dashboard')

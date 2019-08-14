@@ -12,11 +12,13 @@
                     <form method="post">
                         {% csrf_token %}
                         <a href="/" class="waves-effect waves-light btn">Log in</a>
-                        <div class="input-field">
-                            <input class="validate" type="text" name="username" id="id_username" placeholder="Username" required="" autofocus="">
+                        <div class="input-field" style="color:white;">
+                            {{ form.as_p}}
+                            <!-- <input class="validate" type="text" name="username" id="id_username" placeholder="Username" required="" autofocus="">
                             <input class="validate" type="text" name="first_name" id="id_first_name" placeholder="First Name" required="" autofocus="">
                             <input class="validate" type="text" name="last_name" id="id_last_name" placeholder="Last Name" required="" autofocus="">
-                            <input class="validate" type="password" name="password" id="id_password" placeholder="Password" required="" autofocus="">
+                            <input class="validate" type="password" name="password1" id="id_password1" placeholder="Password" required="" autofocus="">
+                            <input class="validate" type="password" name="password2" id="id_password2" placeholder="Confirm Password" required="" autofocus=""> -->
                             <input type="submit" value="Register" class="waves-effect waves-light btn red" style="margin: 10px 0;"><br>
                         </div>
                     </form>

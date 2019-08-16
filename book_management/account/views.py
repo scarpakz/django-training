@@ -27,10 +27,9 @@ class UserCreateView(CreateView):
     success_url = reverse_lazy('login')
 
 @method_decorator(login_required, name='dispatch')
-class UserDashboardCreateView(CreateView, ListView):
+class UserDashboardCreateView(ListView):
     model = Book
     template_name = 'account/dashboard.html'
-    fields = ['name', 'description', 'author']
     success_url = reverse_lazy('dashboard')
     context_object_name = 'book'
 

@@ -1,5 +1,6 @@
 body{
     background-color: rgb(58, 16, 16);
+    delay: .5s;
 }
 .login-app .row .col.s6{
     background-color: #09000152;

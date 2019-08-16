@@ -27,6 +27,7 @@
                 <table class="highlight">
                     <thead>
                         <th>#</th>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Author</th>
@@ -36,8 +37,9 @@
                         {% for b in book %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
+                            <td><img src="/media/{{ b.cover }}" alt="" class="materialboxed" data-caption="Life is Good" width="250"></td>
                             <td>{{ b.name }}</td>
-                            <td>{{ b.description }}</td>
+                            <td style="text-align: justify;"><blockquote>{{ b.description }}</blockquote></td>
                             <td>{{ b.author }}</td>
                             <td>
                                 <a href="{% url 'update_book' b.id %}">Update</a> /
@@ -54,5 +56,20 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block extra_scripts %}
+    <script>
+    
+        document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.materialboxed');
+        var instances = M.Materialbox.init(elems);
+    });
+
+    // Or with jQuery
+
+    $(document).ready(function(){
+        $('.materialboxed').materialbox();
+    });
+    </script>
 {% endblock %}
 {% endif %}

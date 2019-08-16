@@ -13,6 +13,8 @@ from .models import Book
 from .forms import BookForm, SignUpForm
 from .serializers import BookSerializer
 
+
+
 class UserListView(ListView):
     model = User
 
@@ -63,7 +65,7 @@ class BookUpdateView(UpdateView):
     template_name_suffix = "_update_form"
     success_url = reverse_lazy('dashboard')
 
-
+@method_decorator(login_required, name='dispatch')
 class BookCreateAPIView(generics.CreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer

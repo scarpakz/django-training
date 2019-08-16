@@ -19,8 +19,8 @@
                     <a href="{% url 'users' %}">
                         <li><i class="fa fa-user"></i> Users</li>
                     </a>
-                    <a href="{% url 'logout' %}" class="sign-out"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign
-                        Out</a>
+                    <button class="btn red" onclick="promptLogout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign
+                        Out</button>
                 </ul>
                 <hr>
                 {% if book %}
@@ -61,15 +61,15 @@
     <script>
     
         document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.materialboxed');
-        var instances = M.Materialbox.init(elems);
-    });
+            var elems = document.querySelectorAll('.materialboxed');
+            var instances = M.Materialbox.init(elems);
+        });
 
     // Or with jQuery
 
-    $(document).ready(function(){
-        $('.materialboxed').materialbox();
-    });
+        $(document).ready(function(){
+            $('.materialboxed').materialbox();
+        });
     </script>
 {% endblock %}
 {% endif %}

@@ -1,7 +1,7 @@
 from django.db import models
 
 class Book(models.Model):
-    cover = models.ImageField(upload_to='images/', blank=True)
+    cover = models.FileField(upload_to='images/', blank=True)
     name = models.CharField(max_length = 200)
     description = models.TextField()
     author = models.CharField(max_length = 100)

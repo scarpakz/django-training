@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import UserListView, DeleteBookView
+from .views import UserListView, DeleteBookView, BookCreateAPIView
 from . import views
 
 urlpatterns = [
@@ -11,4 +11,5 @@ urlpatterns = [
     path('delete/<int:pk>/', views.DeleteBookView.as_view(), name="book_delete"),
     path('book/', views.BookCreateView.as_view(), name="add_book"),
     path('update_book/<int:pk>/', views.BookUpdateView.as_view(), name="update_book"),
+    path('api/book/create/', BookCreateAPIView.as_view(), name='api-book-create'),
 ]

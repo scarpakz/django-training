@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
+from rest_framework import generics
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView, ListView
 from django.contrib.auth.decorators import login_required
@@ -10,6 +11,7 @@ from django.urls import reverse_lazy
 from .models import Book
 
 from .forms import BookForm, SignUpForm
+from .serializers import BookSerializer
 
 class UserListView(ListView):
     model = User
@@ -60,3 +62,9 @@ class BookUpdateView(UpdateView):
     queryset = Book.objects.all()
     template_name_suffix = "_update_form"
     success_url = reverse_lazy('dashboard')
+
+
+class BookCreateAPIView(generics.CreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    

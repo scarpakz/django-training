@@ -9,17 +9,43 @@
                 <hr>
                 <a href="{% url 'dashboard' %}"> << Back to Dashboard </a>
                 <hr>
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
                         <div class="input-field col s6">
                             {{ form.as_p }}
                         </div>
                     </div>
-                    <input type="submit" value="Update Now" class="btn green">
+                    <button onclick='updateBook("{{ object.id }}","{{ object.name }}","{{ object.description }}","{{ object.author }}")' value="Update Now" class="btn green">Update Now</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script>
+
+        let csrf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+        function updateBook(id, name, description, author){
+            let json_info = {
+                id: id,
+                name: name,
+                description,
+                author
+            }
+
+            $.ajax({
+                url: '../api/book/'+json_info.id+"/",
+                method: 'PUT',
+                contenttype: 'application/json',
+                data: json_info,
+                headers: { "X-CSRFToken": csrf_token },
+                success: (response) =>{
+                    window.location.href='/dashboard/'
+                }
+            });
+        }
+    </script>
 {% endblock %}

@@ -46,17 +46,14 @@ class UserDashboardDisplayUsers(ListView):
     context_object_name = 'user_list'
     template_name = 'account/users.html'
 
-
 class UserLogoutView(views.LogoutView):
     model = Book
     template_name = 'account/logout.html'
-
 
 @method_decorator(login_required, name='dispatch')
 class DeleteBookView(DeleteView):
     model = Book
     success_url = reverse_lazy('dashboard')
-
 
 @method_decorator(login_required, name='dispatch')
 class BookCreateView(CreateView):
@@ -72,14 +69,16 @@ class BookUpdateView(UpdateView):
     template_name_suffix = "_update_form"
     success_url = reverse_lazy('dashboard')
 
-
 @method_decorator(login_required, name='dispatch')
 class BookCreateAPIView(generics.CreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
-
-@method_decorator(login_required, name='dispatch')
-class BookDeleteAPIView(generics.DestroyAPIView):
+class BookRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+
+# @method_decorator(login_required, name="dispatch")
+# class BookUpdateAPIView(generics.UpdateAPIView):
+#     queryset = Book.objects.all()
+#     serializer_class = BookSerializer

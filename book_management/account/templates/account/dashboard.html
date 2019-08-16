@@ -37,13 +37,14 @@
                         {% for b in book %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
+                            {% csrf_token %}
                             <td><img src="/media/{{ b.cover }}" alt="" class="materialboxed" data-caption="Life is Good" width="250"></td>
                             <td>{{ b.name }}</td>
                             <td style="text-align: justify;"><blockquote>{{ b.description }}</blockquote></td>
                             <td>{{ b.author }}</td>
                             <td>
-                                <a href="{% url 'update_book' b.id %}">Update</a> /
-                                <a href="{% url 'book_delete' b.id %}">Delete</a>
+                                <a href="{% url 'update_book' b.id %}">Update</a> <br>
+                                <button class="btn red" onclick='deletePrompt({{ b.id }}, "{{ b.name }}", "{{ b.description }}", "{{ b.author }}" )'>Delete</button>
                             </td>
                         </tr>
                         {% endfor %}
@@ -65,11 +66,53 @@
             var instances = M.Materialbox.init(elems);
         });
 
-    // Or with jQuery
-
         $(document).ready(function(){
             $('.materialboxed').materialbox();
         });
+
+
+        
+        // Delete Book Warning
+        let csrf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+        function deletePrompt(id, name, description, author){
+            swal({
+                title: "Delete this book, "+name+"?",
+                text: "Description: "+description,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    swal("Book Deleted!", {
+                        icon: "success",
+                        buttons: false,
+                    });
+
+                    let json_info = {
+                        id: id,
+                        name: name,
+                        description: description,
+                        author: author
+                    }
+                    
+                    $.ajax({
+                        url: '../api/book/delete/'+json_info.id+"/",
+                        method: 'DELETE',
+                        contenttype: 'application/json',
+                        data: json_info,
+                        headers: { "X-CSRFToken": csrf_token },
+                        success: (response) =>{
+                            
+                        }
+                    });
+                    setTimeout(function(){
+                        window.location.href='/dashboard/';
+                    }, 1500)
+                }
+            });
+        }
+
     </script>
 {% endblock %}
 {% endif %}

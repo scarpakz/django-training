@@ -53,13 +53,11 @@
     function createBookAPI() {
         let csrf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
 
-        // let cover = document.getElementById('id_cover').value;
         let id_name = document.getElementById('id_name').value;
         let id_description = document.getElementById('id_description').value;
         let id_author = document.getElementById('id_author').value;
 
         let json_book = {
-            // cover: cover,
             name: id_name,
             description: id_description,
             author: id_author

@@ -43,8 +43,8 @@
                             <td style="text-align: justify;"><blockquote>{{ b.description }}</blockquote></td>
                             <td>{{ b.author }}</td>
                             <td>
-                                <a href="{% url 'update_book' b.id %}">Update</a> <br>
-                                <button class="btn red" onclick='deletePrompt({{ b.id }}, "{{ b.name }}", "{{ b.description }}", "{{ b.author }}" )'>Delete</button>
+                                <a href="{% url 'update_book' b.id %}" class="btn blue">Update</a> <br><br>
+                                <button class="btn red" onclick='deletePrompt( "{{ b.id }}", "{{ b.name }}", "{{ b.description }}", "{{ b.author }}" )'>Delete</button>
                             </td>
                         </tr>
                         {% endfor %}
@@ -97,7 +97,7 @@
                     }
                     
                     $.ajax({
-                        url: '../api/book/delete/'+json_info.id+"/",
+                        url: '../api/book/'+json_info.id+"/",
                         method: 'DELETE',
                         contenttype: 'application/json',
                         data: json_info,
